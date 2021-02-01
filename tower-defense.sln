@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tower-defense", "tower-defense\tower-defense.csproj", "{654319E6-625C-4C33-92F0-DF594740BDF7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tower-defense", "tower-defense.csproj", "{36E4B8FB-363E-41CF-8E56-CC1C5585BD50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{654319E6-625C-4C33-92F0-DF594740BDF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{654319E6-625C-4C33-92F0-DF594740BDF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{654319E6-625C-4C33-92F0-DF594740BDF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{654319E6-625C-4C33-92F0-DF594740BDF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36E4B8FB-363E-41CF-8E56-CC1C5585BD50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36E4B8FB-363E-41CF-8E56-CC1C5585BD50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36E4B8FB-363E-41CF-8E56-CC1C5585BD50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36E4B8FB-363E-41CF-8E56-CC1C5585BD50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {942C82CE-CA40-4C2E-83B1-39AD501C95C3}
+		SolutionGuid = {DF7E45D0-F6E4-40D6-82BC-9E2EAAF6C98E}
 	EndGlobalSection
 EndGlobal

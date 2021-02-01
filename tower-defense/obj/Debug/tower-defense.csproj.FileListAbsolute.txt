@@ -1,7 +1,0 @@
-C:\Users\jycosand\source\repos\teamproject-indecis-gang\tower-defense\bin\Debug\tower-defense.exe.config
-C:\Users\jycosand\source\repos\teamproject-indecis-gang\tower-defense\bin\Debug\tower-defense.exe
-C:\Users\jycosand\source\repos\teamproject-indecis-gang\tower-defense\bin\Debug\tower-defense.pdb
-C:\Users\jycosand\source\repos\teamproject-indecis-gang\tower-defense\obj\Debug\tower-defense.csprojAssemblyReference.cache
-C:\Users\jycosand\source\repos\teamproject-indecis-gang\tower-defense\obj\Debug\tower-defense.csproj.CoreCompileInputs.cache
-C:\Users\jycosand\source\repos\teamproject-indecis-gang\tower-defense\obj\Debug\tower-defense.exe
-C:\Users\jycosand\source\repos\teamproject-indecis-gang\tower-defense\obj\Debug\tower-defense.pdb
