@@ -24,6 +24,7 @@ namespace MonoTest
         Player player;*/
 
         MenuBase menu;
+        MoneyGenerator moneyGenerator = new MoneyGenerator();
 
         public MyGame()
         {
@@ -49,7 +50,7 @@ namespace MonoTest
             base.Initialize();
 
             this.menu = new MenuMain();
-
+            moneyGenerator.GenerateMoney(1000);
         }
 
         protected override void LoadContent()
