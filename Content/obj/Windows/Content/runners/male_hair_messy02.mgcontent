@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/SchneiderPro/source/repos/teamproject-indecis-gang/Content/runners/male_hair_messy02.png</SourceFile>
-  <SourceTime>2011-12-30T18:26:44+01:00</SourceTime>
-  <DestFile>C:/Users/SchneiderPro/source/repos/teamproject-indecis-gang/Content/bin/Windows/Content/runners/male_hair_messy02.xnb</DestFile>
-  <DestTime>2021-03-22T14:16:41.3001371+01:00</DestTime>
+  <SourceFile>C:/Users/jycosand/source/repos/teamproject-indecis-gang/Content/runners/male_hair_messy02.png</SourceFile>
+  <SourceTime>2021-03-29T09:52:52.2257597+02:00</SourceTime>
+  <DestFile>C:/Users/jycosand/source/repos/teamproject-indecis-gang/Content/bin/Windows/Content/runners/male_hair_messy02.xnb</DestFile>
+  <DestTime>2021-03-29T10:01:19.6147564+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
