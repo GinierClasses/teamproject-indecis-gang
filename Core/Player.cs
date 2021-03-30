@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MonoTest.Core
+namespace tower_defense.Core
 {
     class Player : GameObject
     {

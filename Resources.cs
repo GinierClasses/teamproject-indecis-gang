@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MonoTest
+namespace tower_defense
 {
     public class Resources
     {

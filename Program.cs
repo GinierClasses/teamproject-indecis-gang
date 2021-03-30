@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MonoTest
+namespace tower_defense
 {
     public static class Program
     {
