@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoTest.Core;
+using tower_defense.Core;
 using System;
 
-namespace MonoTest
+namespace tower_defense
 {
     public class MyGame : Game
     {

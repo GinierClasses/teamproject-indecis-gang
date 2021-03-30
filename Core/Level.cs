@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace MonoTest.Core
+namespace tower_defense.Core
 {
     //La classe level va permettre de calculer et d'afficher le level sur la fenêtre de jeu
 

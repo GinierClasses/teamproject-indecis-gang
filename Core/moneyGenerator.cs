@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MonoTest.Core
+namespace tower_defense.Core
 {
     public class MoneyGenerator
     {

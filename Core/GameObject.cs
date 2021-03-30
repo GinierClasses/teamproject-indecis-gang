@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MonoTest.Core
+namespace tower_defense.Core
 {
     //1 Image par direction
     public enum FramesIndex
