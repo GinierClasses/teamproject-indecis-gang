@@ -50,7 +50,6 @@ namespace tower_defense.Core
             _frameHeight = frameHeight;
         }
 
-        //1.4.2
         public void Draw(SpriteBatch spriteBatch)
         {
             //Pour dessiner on passe a la méthode DRAW(Image à afficher,
@@ -86,10 +85,7 @@ namespace tower_defense.Core
                 FrameIndex = 0;
             }
 
-            Source = new Rectangle(0, 0,
-                                    FrameWidth, FrameHeight);
+            Source = new Rectangle(0, 0, FrameWidth, FrameHeight);
         }
-
-        
     }
 }
