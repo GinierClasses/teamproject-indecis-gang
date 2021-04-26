@@ -20,6 +20,11 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/gameplayFont.spritefont
 
+#begin menu.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:menu.xml
+
 #begin runners/arrow_left.png
 /importer:TextureImporter
 /processor:TextureProcessor
