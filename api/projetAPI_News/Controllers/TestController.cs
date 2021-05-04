@@ -15,9 +15,10 @@ namespace projetAPI_News.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
+        // GET api/test/5
         public string Get(int id)
         {
+            System.Diagnostics.Debug.WriteLine(id);
             return "valueTest";
         }
 

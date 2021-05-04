@@ -28,7 +28,7 @@ namespace projetAPI_News
             Console.WriteLine("jesaiscpaspropre");
             //Console.OpenStandardOutput();
             System.Diagnostics.Debug.WriteLine("test");
-            App_Start.Index.TestFunc();
+            
         }
     }
 }
