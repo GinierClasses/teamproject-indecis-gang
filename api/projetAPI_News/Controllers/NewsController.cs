@@ -22,7 +22,7 @@ namespace projetAPI_News.Controllers
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(brutRSS);
             string jsonText = JsonConvert.SerializeXmlNode(doc);
-            System.Diagnostics.Debug.WriteLine(jsonText);
+            // System.Diagnostics.Debug.WriteLine(jsonText);
             return new string[] { jsonText };
         }
 
