@@ -1,13 +1,13 @@
 const Fetch = require('./Fetch');
+
 class Commands {
     constructor(bot){
         this.bot = bot
     }
 
-    toto(){
-        console.log("toto");
-    }
-    async getNews(msg){
+    // IMPORTANT ! Tous les noms de méthode doivent être en minuscules excepté pour Commands.errorCmd()
+
+    async getnews(msg){
         var jsonObj = await Fetch.getJson("https://localhost:44388/api/news");
         var items = jsonObj.rss.channel.item;
         var message = "";
@@ -27,20 +27,8 @@ class Commands {
         msg.reply.text("Bienvenue !")
     }
 
-    async toto(msg){
-        console.log("TOTOTUTU");
-        msg.reply.text("toto reverse !")
-    }
-    
-    async tata(){
-        console.log("TATATUTU");
-    }
-    async titi(){
-        console.log("TITI");
-    }
-
-    async lol(){
-        console.log("TITI");
+    async errorCmd(msg) {
+        msg.reply.text("Commande introuvable...")
     }
 }
 
