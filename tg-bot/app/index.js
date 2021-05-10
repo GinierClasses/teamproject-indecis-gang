@@ -1,31 +1,25 @@
 const TeleBot = require('telebot');
 const secrets = require('./secrets.json');
 const bot = new TeleBot(secrets.BOT_TOKEN);
-
+const Commands = require('./lib/Commands');
+const cmd = new Commands(bot);
 const Fetch = require('./lib/Fetch');
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
 
-var notification = true;
+bot.on('text', async (msg) => {
+  const msgCmd = msg.text.substring(1)
+  const msgArray = msgCmd.split(' ');
+  let botInfos = await bot.getMe();
+  let test = msgArray[0];
+  var commandArray = msgArray[0].split('@')
+  var cmdName = commandArray[0]
+  var msgBotName = commandArray[1]
 
-
-bot.on('/bonjour', (msg) => msg.reply.text(`Bonjour ${msg.from.username}`));
-
-bot.on('/bonsoir', (msg) => msg.reply.text(`Bonsoir ${msg.from.username}`));
-
-// Return last news from Tom's Hardware fr RSS flow
-bot.on('/getNews', async (msg) => {
-    var jsonObj = await Fetch.getJson("https://localhost:44388/api/news");
-    var items = jsonObj.rss.channel.item;
-    var message = "";
-    items.forEach(element => {
-      message += element.link + "\n"
-    });
-    msg.reply.text(message)
+  new RegExp(`(^\/${cmdName})(@${botInfos.username})?$`).test(msg.text) && typeof cmd[cmdName] === "function" ? cmd[cmdName](msg) : errorCmd(msg);
 });
 
-bot.on('/notification', function(msg) {
-    notification = notification == true ? false : true;
-    return notification ? msg.reply.text("Les notifications ont été activées !") : msg.reply.text("Les notifications ont été désactivées !");
-});
+function errorCmd(msg) {
+  msg.reply.text("Commande introuvable...")
+}
 
 bot.start();
