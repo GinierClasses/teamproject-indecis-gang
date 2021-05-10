@@ -1,8 +1,12 @@
 const TeleBot = require('telebot');
 const secrets = require('./secrets.json');
 const bot = new TeleBot(secrets.BOT_TOKEN);
+
 const Fetch = require('./lib/Fetch');
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
+
+var notification = true;
+
 
 bot.on('/bonjour', (msg) => msg.reply.text(`Bonjour ${msg.from.username}`));
 
@@ -17,6 +21,11 @@ bot.on('/getNews', async (msg) => {
       message += element.link + "\n"
     });
     msg.reply.text(message)
+});
+
+bot.on('/notification', function(msg) {
+    notification = notification == true ? false : true;
+    return notification ? msg.reply.text("Les notifications ont été activées !") : msg.reply.text("Les notifications ont été désactivées !");
 });
 
 bot.start();
