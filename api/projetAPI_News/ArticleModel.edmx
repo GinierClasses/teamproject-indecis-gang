@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="projigModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="t_article">
+          <Key>
+            <PropertyRef Name="ID_article" />
+          </Key>
+          <Property Name="ID_article" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titre_article" Type="text" Nullable="false" />
+          <Property Name="lien_article" Type="text" Nullable="false" />
+          <Property Name="createur_article" Type="text" Nullable="false" />
+          <Property Name="description_article" Type="text" Nullable="false" />
+          <Property Name="date_article" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="fk_categorie" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_categorie">
+          <Key>
+            <PropertyRef Name="ID_categorie" />
+          </Key>
+          <Property Name="ID_categorie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_categorie" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_user">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_telegram" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="t_article_ibfk_1">
+          <End Role="t_categorie" Type="Self.t_categorie" Multiplicity="1" />
+          <End Role="t_article" Type="Self.t_article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_categorie">
+              <PropertyRef Name="ID_categorie" />
+            </Principal>
+            <Dependent Role="t_article">
+              <PropertyRef Name="fk_categorie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="projigModelStoreContainer">
+          <EntitySet Name="t_article" EntityType="Self.t_article" Schema="projig" store:Type="Tables" />
+          <EntitySet Name="t_categorie" EntityType="Self.t_categorie" Schema="projig" store:Type="Tables" />
+          <EntitySet Name="t_user" EntityType="Self.t_user" Schema="projig" store:Type="Tables" />
+          <AssociationSet Name="t_article_ibfk_1" Association="Self.t_article_ibfk_1">
+            <End Role="t_categorie" EntitySet="t_categorie" />
+            <End Role="t_article" EntitySet="t_article" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="projigModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="t_article">
+          <Key>
+            <PropertyRef Name="ID_article" />
+          </Key>
+          <Property Name="ID_article" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titre_article" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lien_article" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createur_article" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description_article" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date_article" Type="DateTime" Nullable="false" />
+          <Property Name="fk_categorie" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="t_categorie" Relationship="Self.t_article_ibfk_1" FromRole="t_article" ToRole="t_categorie" />
+        </EntityType>
+        <EntityType Name="t_categorie">
+          <Key>
+            <PropertyRef Name="ID_categorie" />
+          </Key>
+          <Property Name="ID_categorie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_categorie" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="t_article" Relationship="Self.t_article_ibfk_1" FromRole="t_categorie" ToRole="t_article" />
+        </EntityType>
+        <EntityType Name="t_user">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_telegram" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="t_article_ibfk_1">
+          <End Role="t_categorie" Type="Self.t_categorie" Multiplicity="1" />
+          <End Role="t_article" Type="Self.t_article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_categorie">
+              <PropertyRef Name="ID_categorie" />
+            </Principal>
+            <Dependent Role="t_article">
+              <PropertyRef Name="fk_categorie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="projigEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="t_article" EntityType="Self.t_article" />
+          <EntitySet Name="t_categorie" EntityType="Self.t_categorie" />
+          <EntitySet Name="t_user" EntityType="Self.t_user" />
+          <AssociationSet Name="t_article_ibfk_1" Association="Self.t_article_ibfk_1">
+            <End Role="t_categorie" EntitySet="t_categorie" />
+            <End Role="t_article" EntitySet="t_article" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="projigModelStoreContainer" CdmEntityContainer="projigEntities1">
+          <EntitySetMapping Name="t_article">
+            <EntityTypeMapping TypeName="projigModel.t_article">
+              <MappingFragment StoreEntitySet="t_article">
+                <ScalarProperty Name="ID_article" ColumnName="ID_article" />
+                <ScalarProperty Name="titre_article" ColumnName="titre_article" />
+                <ScalarProperty Name="lien_article" ColumnName="lien_article" />
+                <ScalarProperty Name="createur_article" ColumnName="createur_article" />
+                <ScalarProperty Name="description_article" ColumnName="description_article" />
+                <ScalarProperty Name="date_article" ColumnName="date_article" />
+                <ScalarProperty Name="fk_categorie" ColumnName="fk_categorie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_categorie">
+            <EntityTypeMapping TypeName="projigModel.t_categorie">
+              <MappingFragment StoreEntitySet="t_categorie">
+                <ScalarProperty Name="ID_categorie" ColumnName="ID_categorie" />
+                <ScalarProperty Name="nom_categorie" ColumnName="nom_categorie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_user">
+            <EntityTypeMapping TypeName="projigModel.t_user">
+              <MappingFragment StoreEntitySet="t_user">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="id_telegram" ColumnName="id_telegram" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

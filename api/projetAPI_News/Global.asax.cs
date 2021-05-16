@@ -20,6 +20,8 @@ namespace projetAPI_News
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Dal dal = new Dal();
+            
         }
     }
 }
