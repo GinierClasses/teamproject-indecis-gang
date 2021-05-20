@@ -240,6 +240,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Author.cs" />
+    <Compile Include="Models\AuthorModel.cs" />
+    <Compile Include="Models\Categorie.cs" />
+    <Compile Include="Models\CategorieModel.cs" />
+    <Compile Include="Models\News.cs" />
+    <Compile Include="Models\NewsModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UsersModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

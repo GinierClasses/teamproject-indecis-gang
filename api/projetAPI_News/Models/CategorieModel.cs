@@ -1,25 +1,23 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 
-using System.Data;
-using System.Configuration;
-using MySql.Data.MySqlClient;
-
 namespace projetAPI_News.Models
 {
-    public static class UsersModel
+    public static class CategorieModel
     {
-        public static User GetUserInfos()
+        public static Categorie GetCategorieInfos()
         {
             string constr = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
             MySqlConnection cn = new MySqlConnection(constr);
             MySqlCommand cm;
             MySqlDataReader dataReader;
-            String sqlQuery = "SELECT id_telegram, NotificationState FROM t_user";
+            String sqlQuery = "SELECT nom_categorie FROM t_categorie";
             String Output = "";
-            User userInfos = new User();
+            Categorie CategorieInfos = new Categorie();
             try
             {
                 cn.Open();
@@ -29,52 +27,28 @@ namespace projetAPI_News.Models
                 {
                     Output = Output + dataReader.GetValue(0) + dataReader.GetValue(1);
                 }
-                string telegramId = dataReader.GetValue(0).ToString();
-                bool notificationState = bool.Parse(dataReader.GetValue(1).ToString());
-                //System.Diagnostics.Debug.WriteLine();
-                System.Diagnostics.Debug.WriteLine("Okkkkkk!!!!!!!!!!!!!!!");
+                string nom_categorie = dataReader.GetValue(0).ToString();
+                System.Diagnostics.Debug.WriteLine("Info recup");
                 cn.Close();
 
-                userInfos = new User(telegramId, notificationState);
-                System.Diagnostics.Debug.WriteLine(userInfos);
-                
+                CategorieInfos = new Categorie(nom_categorie);
+                System.Diagnostics.Debug.WriteLine(CategorieInfos);
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
 
-            return userInfos;
+            return CategorieInfos;
         }
 
-        public static string CreateUser(string telegramID)
+        public static string CreateCategorie(string nomCategorie)
         {
             string constr = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
             MySqlConnection cn = new MySqlConnection(constr);
             MySqlCommand cm;
-            String sqlQuery = "INSERT INTO `t_user` (`id_user`, `id_telegram`, `NotificationState`) VALUES (NULL, '" + telegramID + "', '1');";
-
-            try
-            {
-                cn.Open();
-                cm = new MySqlCommand(sqlQuery, cn);
-                cm.ExecuteNonQuery();
-                cn.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            
-            return "toto";
-        }
-
-        public static string DeleteUser(string userID)
-        {
-            string constr = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
-            MySqlConnection cn = new MySqlConnection(constr);
-            MySqlCommand cm;
-            String sqlQuery = "DELETE FROM `t_user` WHERE `id_telegram`= '" + userID + "';";
+            String sqlQuery = "INSERT INTO `t_categorie` (`ID_categorie`, `nom_categorie`) VALUES (NULL, '" + nomCategorie + "');";
 
             try
             {
@@ -88,11 +62,30 @@ namespace projetAPI_News.Models
                 Console.WriteLine(ex.Message);
             }
 
-            return "User deleted: " + userID;
-
+            return "Categorie created: " + nomCategorie;
         }
 
+        public static string DeleteCategorie(string nom_categorie)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
+            MySqlConnection cn = new MySqlConnection(constr);
+            MySqlCommand cm;
+            String sqlQuery = "DELETE FROM `t_categorie` WHERE `nom_categorie`= '" + nom_categorie + "';";
 
+            try
+            {
+                cn.Open();
+                cm = new MySqlCommand(sqlQuery, cn);
+                cm.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
+            return "Categorie deleted: " + nom_categorie;
+
+        }
     }
 }

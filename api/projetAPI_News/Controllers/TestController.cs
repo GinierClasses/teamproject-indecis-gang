@@ -36,6 +36,8 @@ namespace projetAPI_News.Controllers
         // PUT api/values/5
         public void Put(int id, [FromBody] string value)
         {
+            value = id.ToString();
+            Models.UsersModel.CreateUser(value);
         }
 
         // DELETE api/values/5

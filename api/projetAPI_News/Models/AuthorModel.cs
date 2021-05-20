@@ -2,24 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
-using System.Data;
-using System.Configuration;
 using MySql.Data.MySqlClient;
+using System.Configuration;
 
 namespace projetAPI_News.Models
 {
-    public static class UsersModel
+    public static class AuthorModel
     {
-        public static User GetUserInfos()
+        public static Author GetAuthorInfos()
         {
             string constr = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
             MySqlConnection cn = new MySqlConnection(constr);
             MySqlCommand cm;
             MySqlDataReader dataReader;
-            String sqlQuery = "SELECT id_telegram, NotificationState FROM t_user";
+            String sqlQuery = "SELECT AuthorName FROM t_author";
             String Output = "";
-            User userInfos = new User();
+            Author authorInfos = new Author();
             try
             {
                 cn.Open();
@@ -29,52 +27,28 @@ namespace projetAPI_News.Models
                 {
                     Output = Output + dataReader.GetValue(0) + dataReader.GetValue(1);
                 }
-                string telegramId = dataReader.GetValue(0).ToString();
-                bool notificationState = bool.Parse(dataReader.GetValue(1).ToString());
-                //System.Diagnostics.Debug.WriteLine();
+                string authorName = dataReader.GetValue(0).ToString();
                 System.Diagnostics.Debug.WriteLine("Okkkkkk!!!!!!!!!!!!!!!");
                 cn.Close();
 
-                userInfos = new User(telegramId, notificationState);
-                System.Diagnostics.Debug.WriteLine(userInfos);
-                
+                authorInfos = new Author(authorName);
+                System.Diagnostics.Debug.WriteLine(authorInfos);
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
 
-            return userInfos;
+            return authorInfos;
         }
 
-        public static string CreateUser(string telegramID)
+        public static string CreateAuthor(string authorName)
         {
             string constr = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
             MySqlConnection cn = new MySqlConnection(constr);
             MySqlCommand cm;
-            String sqlQuery = "INSERT INTO `t_user` (`id_user`, `id_telegram`, `NotificationState`) VALUES (NULL, '" + telegramID + "', '1');";
-
-            try
-            {
-                cn.Open();
-                cm = new MySqlCommand(sqlQuery, cn);
-                cm.ExecuteNonQuery();
-                cn.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            
-            return "toto";
-        }
-
-        public static string DeleteUser(string userID)
-        {
-            string constr = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
-            MySqlConnection cn = new MySqlConnection(constr);
-            MySqlCommand cm;
-            String sqlQuery = "DELETE FROM `t_user` WHERE `id_telegram`= '" + userID + "';";
+            String sqlQuery = "INSERT INTO `t_author` (`ID_author`, `AuthorName`) VALUES (NULL, '" + authorName + "');";
 
             try
             {
@@ -88,11 +62,30 @@ namespace projetAPI_News.Models
                 Console.WriteLine(ex.Message);
             }
 
-            return "User deleted: " + userID;
-
+            return "Author added";
         }
 
+        public static string DeleteAuthor(string authorName)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
+            MySqlConnection cn = new MySqlConnection(constr);
+            MySqlCommand cm;
+            String sqlQuery = "DELETE FROM `t_author` WHERE `AuthorName` LIKE '%'" + authorName + "'%';";
 
+            try
+            {
+                cn.Open();
+                cm = new MySqlCommand(sqlQuery, cn);
+                cm.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
+            return "Author deleted: " + authorName;
+
+        }
     }
 }
