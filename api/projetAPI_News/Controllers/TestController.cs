@@ -5,21 +5,27 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+using System.Data;
+using System.Configuration;
+using MySql.Data.MySqlClient;
+
 namespace projetAPI_News.Controllers
 {
     public class TestController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        public Models.User Get()
         {
-            return new string[] { "value1", "value2" };
+            return Models.UsersModel.GetUserInfos();
         }
 
         // GET api/test/5
-        public string Get(int id)
+        public Models.User Get(int id)
         {
             System.Diagnostics.Debug.WriteLine(id);
-            return "valueTest";
+            
+            //Models.UsersModel.SetUserInfos();
+            return Models.UsersModel.GetUserInfos();
         }
 
         // POST api/values
