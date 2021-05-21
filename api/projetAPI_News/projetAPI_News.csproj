@@ -234,16 +234,18 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\FetchController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Author.cs" />
-    <Compile Include="Models\AuthorModel.cs" />
-    <Compile Include="Models\Categorie.cs" />
-    <Compile Include="Models\CategorieModel.cs" />
+    <Compile Include="Models\AuthorsModel.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CategoriesModel.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsModel.cs" />
     <Compile Include="Models\User.cs" />
@@ -307,6 +309,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Users\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

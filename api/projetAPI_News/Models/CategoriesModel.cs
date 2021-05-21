@@ -7,9 +7,9 @@ using System.Web;
 
 namespace projetAPI_News.Models
 {
-    public static class CategorieModel
+    public static class CategoriesModel
     {
-        public static Categorie GetCategorieInfos()
+        public static Category GetCategorieInfos()
         {
             string constr = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
             MySqlConnection cn = new MySqlConnection(constr);
@@ -17,7 +17,7 @@ namespace projetAPI_News.Models
             MySqlDataReader dataReader;
             String sqlQuery = "SELECT nom_categorie FROM t_categorie";
             String Output = "";
-            Categorie CategorieInfos = new Categorie();
+            Category CategorieInfos = new Category();
             try
             {
                 cn.Open();
@@ -31,7 +31,7 @@ namespace projetAPI_News.Models
                 System.Diagnostics.Debug.WriteLine("Info recup");
                 cn.Close();
 
-                CategorieInfos = new Categorie(nom_categorie);
+                CategorieInfos = new Category(nom_categorie);
                 System.Diagnostics.Debug.WriteLine(CategorieInfos);
 
             }

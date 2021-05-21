@@ -7,7 +7,7 @@ using System.Configuration;
 
 namespace projetAPI_News.Models
 {
-    public static class AuthorModel
+    public static class AuthorsModel
     {
         public static Author GetAuthorInfos()
         {

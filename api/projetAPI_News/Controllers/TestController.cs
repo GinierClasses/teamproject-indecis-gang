@@ -16,16 +16,17 @@ namespace projetAPI_News.Controllers
         // GET api/values
         public Models.User Get()
         {
-            return Models.UsersModel.GetUserInfos();
+            return Models.UsersModel.GetUserInfos(0);
         }
 
         // GET api/test/5
-        public Models.User Get(int id)
+        public Models.Author Get(int id)
         {
             System.Diagnostics.Debug.WriteLine(id);
-            
+
             //Models.UsersModel.SetUserInfos();
-            return Models.UsersModel.GetUserInfos();
+            //return Models.UsersModel.GetUserInfos();
+            return Models.AuthorsModel.GetAuthorInfos();
         }
 
         // POST api/values

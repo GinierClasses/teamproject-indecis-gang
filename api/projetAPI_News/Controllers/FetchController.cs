@@ -11,14 +11,22 @@ using projetAPI_News.Models;
 
 namespace projetAPI_News.Controllers
 {
-    public class NewsController : ApiController
+    public class FetchController : ApiController
     {
         WebClient webClient = new WebClient();
         // GET api/<controller>
-        public News Get()
+
+
+        public String Get()
         {
-            System.Diagnostics.Debug.WriteLine("toto");
-            return NewsModel.GetNewsInfos();
+            string brutRSS = webClient.DownloadString("https://www.tomshardware.fr/feed");
+            byte[] bytes = Encoding.Default.GetBytes(brutRSS);
+            brutRSS = Encoding.UTF8.GetString(bytes);
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(brutRSS);
+            string jsonText = JsonConvert.SerializeXmlNode(doc);
+            // System.Diagnostics.Debug.WriteLine(jsonText);
+            return jsonText;
         }
         // GET api/<controller>/5
         public News Get(int id)
@@ -27,9 +35,8 @@ namespace projetAPI_News.Controllers
         }
 
         // POST api/<controller>
-        public string Post([FromBody] string value)
+        public void Post([FromBody] string value)
         {
-            return NewsModel.CreateNews("toto", "toto", "toto", "2021-05-05T00:00:00", "toto", "tutu");
         }
 
         // PUT api/<controller>/5
