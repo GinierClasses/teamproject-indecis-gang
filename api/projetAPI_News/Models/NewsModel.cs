@@ -15,28 +15,37 @@ namespace projetAPI_News.Models
             MySqlConnection cn = new MySqlConnection(constr);
             MySqlCommand cm;
             MySqlDataReader dataReader;
-            String sqlQuery = "SELECT NewsTitle, NewsLink, NewsDate, NewsDescription, fk_category, fk_author FROM t_news";
-            String Output = "";
+            String sqlQuery = "SELECT t_news.NewsTitle, t_news.NewsDescription, t_news.NewsLink, t_news.NewsDateTime, t_news.NewsCategory, t_news.NewsAuthor FROM t_news";
+
+
+
+
+
+            //"SELECT t_news.NewsTitle, t_news.NewsDescription, t_news.NewsLink, t_news.NewsDateTime, t_authors.AuthorName FROM `t_news` " +
+            //"JOIN t_newsauthors ON t_news.Id_News = t_newsauthors.Fk_News" +
+            //"JOIN t_authors ON t_newsauthors.Fk_Author = t_authors.Id_Author";
+            //SELECT t_news.NewsTitle, t_news.NewsDescription, t_news.NewsLink, t_news.NewsDateTime, t_categories.CategoryName FROM t_news 
+            //JOIN t_newscategories ON t_news.Id_News = t_newscategories.Fk_News
+            //JOIN t_categories ON t_newscategories.Fk_Category = t_categories.Id_Category
+            
             News newsInfos = new News();
             try
             {
                 cn.Open();
                 cm = new MySqlCommand(sqlQuery, cn);
                 dataReader = cm.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    Output = Output + dataReader.GetValue(0) + dataReader.GetValue(1);
-                }
+                dataReader.Read();
+                
                 string newsTitle = dataReader.GetValue(0).ToString();
-                string newsLink = dataReader.GetValue(1).ToString();
-                string newsDate = dataReader.GetValue(2).ToString();
-                string newsDescription = dataReader.GetValue(3).ToString();
-                string fk_categorie = dataReader.GetValue(4).ToString();
-                string fk_author = dataReader.GetValue(5).ToString();
-                System.Diagnostics.Debug.WriteLine("Get News Ok!!!!!!");
+                string newsDescription = dataReader.GetValue(1).ToString();
+                string newsLink = dataReader.GetValue(2).ToString();
+                string newsDateTime = dataReader.GetValue(3).ToString();
+                Category newsCategory = new Category(dataReader.GetValue(4).ToString());
+                Author newsAuthor = new Author(dataReader.GetValue(5).ToString());
+
                 cn.Close();
 
-                newsInfos = new News(newsTitle, newsLink, Convert.ToDateTime(newsDate), newsDescription, new List<Category> { new Category(fk_categorie) }, new List<Author> { new Author(fk_author) });
+                newsInfos = new News(newsTitle, newsLink, Convert.ToDateTime(newsDateTime), newsDescription, new List<Category> { newsCategory }, new List<Author> { newsAuthor });
                 System.Diagnostics.Debug.WriteLine(newsInfos);
 
             }
@@ -48,12 +57,13 @@ namespace projetAPI_News.Models
             return newsInfos;
         }
 
-        public static string CreateNews(string newsTitle, string newsLink, string newsDate, string newsDescription, string fk_category, string fk_author)
+        public static string CreateNews(string newsTitle, string newsDescription, string newsLink,  string newsDateTime, string newscategory, string newsauthor)
         {
             string constr = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
             MySqlConnection cn = new MySqlConnection(constr);
             MySqlCommand cm;
-            String sqlQuery = "INSERT INTO `t_news` (`ID_News`, `NewsTitle`, `NewsLink`, `NewsDate`, `NewsDescription`, `fk_category`, `fk_author` ) VALUES (NULL, '" + newsTitle + "', '" + newsLink + "', '" + newsDate + "', '" + newsDescription + "', '" + fk_category + "', '" + fk_author + "');";
+            //INSERT INTO `t_news` (`Id_News`, `NewsTitle`, `NewsDescription`, `NewsLink`, `NewsDateTime`) VALUES (NULL, 'Bonjour, je suis ', 'Bonjour, je suis ', 'Bonjour, je suis ', '2021-05-05 00:00:00');
+            String sqlQuery = "INSERT INTO `t_news` (`NewsTitle`, `NewsDescription`, `NewsLink`, `NewsDateTime`, `NewsCategory`, `NewsAuthor` ) VALUES ('" + newsTitle + "', '" + newsDescription + "', '" + newsLink + "', '" + newsDateTime + "', '" + newscategory + "', '" + newsauthor + "')";
 
             try
             {
@@ -61,13 +71,14 @@ namespace projetAPI_News.Models
                 cm = new MySqlCommand(sqlQuery, cn);
                 cm.ExecuteNonQuery();
                 cn.Close();
+            return "News created: " + newsTitle + " Description: " + newsDescription;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                return "error";
             }
 
-            return "News created: " + newsTitle + " Description: " + newsDescription;
         }
 
         public static string DeleteNews(string newsTitle, string newsDate)

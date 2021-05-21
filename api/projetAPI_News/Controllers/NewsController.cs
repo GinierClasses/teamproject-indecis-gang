@@ -15,17 +15,6 @@ namespace projetAPI_News.Controllers
     {
         WebClient webClient = new WebClient();
         // GET api/<controller>
-        public IEnumerable<string> ijefijGett()
-        {
-            string brutRSS = webClient.DownloadString("https://www.tomshardware.fr/feed");
-            byte[] bytes = Encoding.Default.GetBytes(brutRSS);
-            brutRSS = Encoding.UTF8.GetString(bytes);
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(brutRSS);
-            string jsonText = JsonConvert.SerializeXmlNode(doc);
-            // System.Diagnostics.Debug.WriteLine(jsonText);
-            return new string[] { jsonText };
-        }
         public News Get()
         {
             System.Diagnostics.Debug.WriteLine("toto");
@@ -38,8 +27,9 @@ namespace projetAPI_News.Controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody] string value)
+        public string Post([FromBody] string value)
         {
+            return NewsModel.CreateNews("toto", "toto", "toto", "2021-05-05T00:00:00", "toto", "tutu");
         }
 
         // PUT api/<controller>/5
