@@ -11,34 +11,27 @@ namespace projetAPI_News.Models
 {
     public static class UsersModel
     {
+
         public static User GetUserInfos(int client_id)
         {
             string constr = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
             MySqlConnection cn = new MySqlConnection(constr);
             MySqlCommand cm;
             MySqlDataReader dataReader;
-            String sqlQuery = "SELECT id_telegram, NotificationState, last_news_id FROM t_user WHERE id_telegram=" + client_id;
-            String Output = "";
+            String sqlQuery = "SELECT * FROM t_users WHERE ClientId=" + client_id + ";";
             User userInfos = new User();
             try
             {
                 cn.Open();
                 cm = new MySqlCommand(sqlQuery, cn);
                 dataReader = cm.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    Output = Output + dataReader.GetValue(0) + dataReader.GetValue(1);
-                }
-                string telegramId = dataReader.GetValue(0).ToString();
-                bool notificationState = bool.Parse(dataReader.GetValue(1).ToString());
-                int last_news_id = int.Parse(dataReader.GetValue(2).ToString());
-                System.Diagnostics.Debug.WriteLine(client_id);
-                System.Diagnostics.Debug.WriteLine("Okkkkkk!!!!!!!!!!!!!!!");
+                dataReader.Read();
+                string telegramId = dataReader.GetValue(1).ToString();
+                bool notificationState = bool.Parse(dataReader.GetValue(2).ToString());
+                int last_news_id = int.Parse(dataReader.GetValue(3).ToString());
                 cn.Close();
 
-                userInfos = new User(telegramId, notificationState, 17);
-                System.Diagnostics.Debug.WriteLine(userInfos);
-                
+                userInfos = new User(telegramId, notificationState, last_news_id);
             }
             catch (Exception ex)
             {
@@ -48,12 +41,34 @@ namespace projetAPI_News.Models
             return userInfos;
         }
 
-        public static string CreateUser(string telegramID)
+        public static string CreateUser(string clientId)
         {
             string constr = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
             MySqlConnection cn = new MySqlConnection(constr);
             MySqlCommand cm;
-            String sqlQuery = "INSERT INTO `t_user` (`id_user`, `id_telegram`, `NotificationState`) VALUES (NULL, '" + telegramID + "', '1');";
+            String sqlQuery = "INSERT INTO `t_users` (`id_user`, `ClientId`, `NotificationState`, `LastNewsId`) VALUES (NULL, '" + clientId + "', '0', NULL);";
+
+            try
+            {
+                cn.Open();
+                cm = new MySqlCommand(sqlQuery, cn);
+                cm.ExecuteNonQuery();
+                cn.Close();
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return "Error";
+            }
+        }
+
+        public static string DeleteUser(string clientId)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
+            MySqlConnection cn = new MySqlConnection(constr);
+            MySqlCommand cm;
+            String sqlQuery = "DELETE FROM `t_users` WHERE `ClientId`= '" + clientId + "';";
 
             try
             {
@@ -66,16 +81,17 @@ namespace projetAPI_News.Models
             {
                 Console.WriteLine(ex.Message);
             }
-            
-            return "toto";
+
+            return "User deleted: " + clientId;
+
         }
 
-        public static string DeleteUser(string userID)
+        public static string UpdateUser(string clientId, bool notificationState, int lastNewsId)
         {
             string constr = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
             MySqlConnection cn = new MySqlConnection(constr);
             MySqlCommand cm;
-            String sqlQuery = "DELETE FROM `t_user` WHERE `id_telegram`= '" + userID + "';";
+            String sqlQuery = "UPDATE `t_users` SET `NotificationState` =" + notificationState + ", `LastNewsId` = " + lastNewsId + " WHERE `t_users`.`ClientId` = " + clientId + ";";
 
             try
             {
@@ -83,16 +99,14 @@ namespace projetAPI_News.Models
                 cm = new MySqlCommand(sqlQuery, cn);
                 cm.ExecuteNonQuery();
                 cn.Close();
+                return "Success";
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                return "Error";
             }
-
-            return "User deleted: " + userID;
-
         }
-
 
 
     }

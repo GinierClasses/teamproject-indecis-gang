@@ -24,18 +24,21 @@ namespace projetAPI_News.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody] string value)
+        public string Post([FromBody] string value)
         {
+            return UsersModel.CreateUser("171717");
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody] string value)
+        public string Put(int id, [FromBody] string value)
         {
+            return UsersModel.UpdateUser("171717", false, 5);
         }
 
         // DELETE api/values/5
-        public void Delete(int id)
+        public string Delete(int id)
         {
+            return UsersModel.DeleteUser("555");
         }
     }
 }
