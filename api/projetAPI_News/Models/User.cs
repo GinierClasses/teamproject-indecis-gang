@@ -9,11 +9,13 @@ namespace projetAPI_News.Models
     {
         public string IdTelegram { get; set; }
         public bool NotificationState { get; set; }
+        public int LastNewsId { get; set; }
 
-        public User(string idTelegram, bool notificationState)
+        public User(string idTelegram, bool notificationState, int lastNewsId)
         {
             IdTelegram = idTelegram;
             NotificationState = notificationState;
+            LastNewsId = lastNewsId;
         }
 
         public User()

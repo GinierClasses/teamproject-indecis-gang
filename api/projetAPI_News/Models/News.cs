@@ -11,17 +11,17 @@ namespace projetAPI_News.Models
         public string NewsLink { get; set; }
         public string NewsDate { get; set; }
         public string NewsDescription { get; set; }
-        public string fk_categorie { get; set; }
-        public string fk_author { get; set; }
+        public List<Category> Categories { get; set; }
+        public List<Author> Authors { get; set; }
 
-        public News(string newsTiTle, string newsLink, string newsDate, string newsDescription, string fk_categorie, string fk_author)
+        public News(string newsTiTle, string newsLink, string newsDate, string newsDescription, List<Category> categories, List<Author> authors)
         {
             NewsTiTle = newsTiTle;
             NewsLink = newsLink;
             NewsDate = newsDate;
             NewsDescription = newsDescription;
-            this.fk_categorie = fk_categorie;
-            this.fk_author = fk_author;
+            this.Categories = categories;
+            this.Authors = authors;
         }
 
         public News()

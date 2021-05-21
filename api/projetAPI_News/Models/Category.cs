@@ -7,13 +7,15 @@ namespace projetAPI_News.Models
 {
     public class Category
     {
-        int IdCategory;
-        string CategoryName;
+        public string Name { get; set; }
 
-        public Category(int idCategory, string categoryName)
+        public Category(string nom_categorie)
         {
-            IdCategory = idCategory;
-            CategoryName = categoryName;
+            this.Name = nom_categorie;
+        }
+
+        public Category()
+        {
         }
     }
 }

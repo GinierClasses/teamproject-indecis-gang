@@ -26,7 +26,7 @@ namespace projetAPI_News.Controllers
 
             //Models.UsersModel.SetUserInfos();
             //return Models.UsersModel.GetUserInfos();
-            return Models.AuthorModel.GetAuthorInfos();
+            return Models.AuthorsModel.GetAuthorInfos();
         }
 
         // POST api/values

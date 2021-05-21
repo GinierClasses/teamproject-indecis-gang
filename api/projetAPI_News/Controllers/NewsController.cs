@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Web.Http;
 using System.Xml;
+using projetAPI_News.Models;
 
 namespace projetAPI_News.Controllers
 {
@@ -14,7 +15,7 @@ namespace projetAPI_News.Controllers
     {
         WebClient webClient = new WebClient();
         // GET api/<controller>
-        public IEnumerable<string> Get()
+        public IEnumerable<string> ijefijGett()
         {
             string brutRSS = webClient.DownloadString("https://www.tomshardware.fr/feed");
             byte[] bytes = Encoding.Default.GetBytes(brutRSS);
@@ -25,11 +26,15 @@ namespace projetAPI_News.Controllers
             // System.Diagnostics.Debug.WriteLine(jsonText);
             return new string[] { jsonText };
         }
-
-        // GET api/<controller>/5
-        public string Get(int id)
+        public News Get()
         {
-            return webClient.DownloadString("https://www.tomshardware.fr/feed");
+            System.Diagnostics.Debug.WriteLine("toto");
+            return NewsModel.GetNewsInfos();
+        }
+        // GET api/<controller>/5
+        public News Get(int id)
+        {
+            return new Models.News();
         }
 
         // POST api/<controller>

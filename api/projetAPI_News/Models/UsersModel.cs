@@ -35,7 +35,7 @@ namespace projetAPI_News.Models
                 System.Diagnostics.Debug.WriteLine("Okkkkkk!!!!!!!!!!!!!!!");
                 cn.Close();
 
-                userInfos = new User(telegramId, notificationState);
+                userInfos = new User(telegramId, notificationState, 17);
                 System.Diagnostics.Debug.WriteLine(userInfos);
                 
             }
