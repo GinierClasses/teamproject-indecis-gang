@@ -20,12 +20,13 @@ namespace projetAPI_News.Controllers
         }
 
         // GET api/test/5
-        public Models.User Get(int id)
+        public Models.Author Get(int id)
         {
             System.Diagnostics.Debug.WriteLine(id);
-            
+
             //Models.UsersModel.SetUserInfos();
-            return Models.UsersModel.GetUserInfos();
+            //return Models.UsersModel.GetUserInfos();
+            return Models.AuthorModel.GetAuthorInfos();
         }
 
         // POST api/values
