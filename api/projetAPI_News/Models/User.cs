@@ -15,5 +15,9 @@ namespace projetAPI_News.Models
             IdTelegram = idTelegram;
             NotificationState = notificationState;
         }
+
+        public User()
+        {
+        }
     }
 }

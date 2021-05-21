@@ -7,12 +7,12 @@ namespace projetAPI_News.Models
 {
     public class Author
     {
-        int IdAuthor;
-        string AuthorName;
+        public string AuthorName { get; set; }
 
-        public Author(int idAuthor, string authorName)
+        public Author() { }
+
+        public Author(string authorName)
         {
-            IdAuthor = idAuthor;
             AuthorName = authorName;
         }
     }

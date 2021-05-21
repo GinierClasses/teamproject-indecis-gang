@@ -7,25 +7,26 @@ namespace projetAPI_News.Models
 {
     public class News
     {
-        int IdNews;
-        string NewsTitle;
-        string NewsLink;
-        string NewsAuthor;
-        DateTime NewsDate;
-        string NewsDescription;
-        Category Category;
-        Author Author;
+        public string NewsTiTle { get; set; }
+        public string NewsLink { get; set; }
+        public string NewsDate { get; set; }
+        public string NewsDescription { get; set; }
+        public string fk_categorie { get; set; }
+        public string fk_author { get; set; }
 
-        public News(int idNews, string newsTitle, string newsLink, string newsAuthor, DateTime newsDate, string newsDescription, Category category, Author author)
+        public News(string newsTiTle, string newsLink, string newsDate, string newsDescription, string fk_categorie, string fk_author)
         {
-            IdNews = idNews;
-            NewsTitle = newsTitle;
+            NewsTiTle = newsTiTle;
             NewsLink = newsLink;
-            NewsAuthor = newsAuthor;
             NewsDate = newsDate;
             NewsDescription = newsDescription;
-            Category = category;
-            Author = author;
+            this.fk_categorie = fk_categorie;
+            this.fk_author = fk_author;
+        }
+
+        public News()
+        {
+
         }
     }
 }
