@@ -11,13 +11,13 @@ namespace projetAPI_News.Models
 {
     public static class UsersModel
     {
-        public static User GetUserInfos()
+        public static User GetUserInfos(int client_id)
         {
             string constr = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
             MySqlConnection cn = new MySqlConnection(constr);
             MySqlCommand cm;
             MySqlDataReader dataReader;
-            String sqlQuery = "SELECT id_telegram, NotificationState FROM t_user WHERE id_telegram=171717";
+            String sqlQuery = "SELECT id_telegram, NotificationState, last_news_id FROM t_user WHERE id_telegram=" + client_id;
             String Output = "";
             User userInfos = new User();
             try
@@ -31,7 +31,8 @@ namespace projetAPI_News.Models
                 }
                 string telegramId = dataReader.GetValue(0).ToString();
                 bool notificationState = bool.Parse(dataReader.GetValue(1).ToString());
-                //System.Diagnostics.Debug.WriteLine();
+                int last_news_id = int.Parse(dataReader.GetValue(2).ToString());
+                System.Diagnostics.Debug.WriteLine(client_id);
                 System.Diagnostics.Debug.WriteLine("Okkkkkk!!!!!!!!!!!!!!!");
                 cn.Close();
 

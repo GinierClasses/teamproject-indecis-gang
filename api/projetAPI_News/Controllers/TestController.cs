@@ -16,7 +16,7 @@ namespace projetAPI_News.Controllers
         // GET api/values
         public Models.User Get()
         {
-            return Models.UsersModel.GetUserInfos();
+            return Models.UsersModel.GetUserInfos(0);
         }
 
         // GET api/test/5
