@@ -11,15 +11,12 @@ namespace projetAPI_News.Models
         public bool NotificationState { get; set; }
         public int LastNewsId { get; set; }
 
+        public User() { }
         public User(string idTelegram, bool notificationState, int lastNewsId)
         {
             IdTelegram = idTelegram;
             NotificationState = notificationState;
             LastNewsId = lastNewsId;
-        }
-
-        public User()
-        {
         }
     }
 }

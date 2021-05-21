@@ -7,13 +7,13 @@ namespace projetAPI_News.Models
 {
     public class Author
     {
-        public string AuthorName { get; set; }
+        public string Name { get; set; }
 
         public Author() { }
 
         public Author(string authorName)
         {
-            AuthorName = authorName;
+            Name = authorName;
         }
     }
 }

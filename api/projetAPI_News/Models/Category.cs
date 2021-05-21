@@ -8,14 +8,10 @@ namespace projetAPI_News.Models
     public class Category
     {
         public string Name { get; set; }
-
-        public Category(string nom_categorie)
+        public Category() { }
+        public Category(string categoryName)
         {
-            this.Name = nom_categorie;
-        }
-
-        public Category()
-        {
+            this.Name = categoryName;
         }
     }
 }

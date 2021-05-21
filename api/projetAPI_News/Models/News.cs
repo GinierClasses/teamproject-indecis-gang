@@ -14,6 +14,7 @@ namespace projetAPI_News.Models
         public List<Category> Categories { get; set; }
         public List<Author> Authors { get; set; }
 
+        public News() { }
         public News(string newsTiTle, string newsLink, DateTime newsDateTime, string newsDescription, List<Category> categories, List<Author> authors)
         {
             TiTle = newsTiTle;
@@ -22,11 +23,6 @@ namespace projetAPI_News.Models
             Description = newsDescription;
             this.Categories = categories;
             this.Authors = authors;
-        }
-
-        public News()
-        {
-
-        }
+        }        
     }
 }
