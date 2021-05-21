@@ -30,6 +30,16 @@ class Commands {
     async errorCmd(msg) {
         msg.reply.text("Commande introuvable...")
     }
+
+    async settings(msg){
+        var AsciiTable = require('ascii-table')
+        var settingsTable = new AsciiTable("Liste des paramètres")
+        settingsTable
+            .setHeading("Paramètre", "Valeur")
+            .addRow("Notification", "true")
+
+        this.bot.sendMessage(msg.chat.id, "`" + settingsTable.toString() + "`", {parseMode: 'markdown'})
+    }
 }
 
 module.exports = Commands
