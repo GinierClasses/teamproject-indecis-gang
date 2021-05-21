@@ -26,6 +26,7 @@ namespace projetAPI_News.Models
 
         public News()
         {
+
         }
     }
 }
