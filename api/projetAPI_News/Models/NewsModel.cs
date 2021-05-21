@@ -36,7 +36,7 @@ namespace projetAPI_News.Models
                 System.Diagnostics.Debug.WriteLine("Get News Ok!!!!!!");
                 cn.Close();
 
-                newsInfos = new News(newsTitle, newsLink, newsDate, newsDescription, new List<Category> { new Category(fk_categorie) }, new List<Author> { new Author(fk_author) });
+                newsInfos = new News(newsTitle, newsLink, Convert.ToDateTime(newsDate), newsDescription, new List<Category> { new Category(fk_categorie) }, new List<Author> { new Author(fk_author) });
                 System.Diagnostics.Debug.WriteLine(newsInfos);
 
             }
